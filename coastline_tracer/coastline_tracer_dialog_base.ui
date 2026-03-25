@@ -1,0 +1,696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CoastlineTracerDialogBase</class>
+ <widget class="QDialog" name="CoastlineTracerDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>720</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CoastlineTracer - 海岸线追踪器</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_main">
+   <item>
+    <!-- 主标签页控件 -->
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+
+     <!-- 标签页 1: 数据与参数 -->
+     <widget class="QWidget" name="tab_data">
+      <attribute name="title">
+       <string>数据与参数</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layout_tab_data">
+       <item>
+        <!-- 数据输入分组 -->
+        <widget class="QGroupBox" name="grp_data_input">
+         <property name="title">
+          <string>数据输入</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_data">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_coast">
+            <property name="text">
+             <string>海岸线图层:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QgsMapLayerComboBox" name="cmb_coast">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_coast_w">
+              <property name="text">
+               <string>权重:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="spin_coast_weight">
+              <property name="minimum">
+               <double>0.1</double>
+              </property>
+              <property name="maximum">
+               <double>9999.0</double>
+              </property>
+              <property name="value">
+               <double>1.0</double>
+              </property>
+              <property name="singleStep">
+               <double>0.5</double>
+              </property>
+              <property name="decimals">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_build">
+            <property name="text">
+             <string>建设线图层:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QgsMapLayerComboBox" name="cmb_build_coast">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_build_w">
+              <property name="text">
+               <string>权重:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="spin_build_weight">
+              <property name="minimum">
+               <double>0.1</double>
+              </property>
+              <property name="maximum">
+               <double>9999.0</double>
+              </property>
+              <property name="value">
+               <double>10.0</double>
+              </property>
+              <property name="singleStep">
+               <double>1.0</double>
+              </property>
+              <property name="decimals">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lbl_border">
+            <property name="text">
+             <string>陆地边界图层:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QgsMapLayerComboBox" name="cmb_land_border">
+              <property name="minimumWidth">
+               <number>200</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_border_w">
+              <property name="text">
+               <string>权重:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="spin_border_weight">
+              <property name="minimum">
+               <double>0.1</double>
+              </property>
+              <property name="maximum">
+               <double>9999.0</double>
+              </property>
+              <property name="value">
+               <double>100.0</double>
+              </property>
+              <property name="singleStep">
+               <double>10.0</double>
+              </property>
+              <property name="decimals">
+               <number>1</number>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <!-- 参数设置分组 -->
+        <widget class="QGroupBox" name="grp_params">
+         <property name="title">
+          <string>参数设置</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_params">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_tolerance">
+            <property name="text">
+             <string>节点合并容差 (米):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="spin_tolerance">
+            <property name="minimum">
+             <double>1.0</double>
+            </property>
+            <property name="maximum">
+             <double>10000.0</double>
+            </property>
+            <property name="value">
+             <double>50.0</double>
+            </property>
+            <property name="singleStep">
+             <double>10.0</double>
+            </property>
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_algorithm">
+            <property name="text">
+             <string>搜索算法:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QComboBox" name="cmb_algorithm">
+            <item>
+             <property name="text">
+              <string>双向Dijkstra（推荐）</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>A*（启发式加速）</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>标准Dijkstra</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="lbl_preset">
+            <property name="text">
+             <string>预设模式:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QRadioButton" name="radio_fast">
+              <property name="text">
+               <string>快速</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radio_standard">
+              <property name="text">
+               <string>标准</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QRadioButton" name="radio_precise">
+              <property name="text">
+               <string>精确</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <!-- 空间裁剪分组 -->
+        <widget class="QGroupBox" name="grp_spatial_clip">
+         <property name="title">
+          <string>空间裁剪</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_clip">
+          <item row="0" column="0">
+           <widget class="QCheckBox" name="chk_spatial_clip">
+            <property name="text">
+             <string>启用空间裁剪（推荐，可大幅提升性能）</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_buffer">
+            <property name="text">
+             <string>缓冲区扩展 (%):</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QSpinBox" name="spin_buffer_pct">
+            <property name="minimum">
+             <number>5</number>
+            </property>
+            <property name="maximum">
+             <number>200</number>
+            </property>
+            <property name="value">
+             <number>20</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- 标签页 2: 起止点 -->
+     <widget class="QWidget" name="tab_points">
+      <attribute name="title">
+       <string>起止点</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layout_tab_points">
+       <item>
+        <!-- A 点分组 -->
+        <widget class="QGroupBox" name="grp_point_a">
+         <property name="title">
+          <string>A 点（起点）</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_a">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_a_lon">
+            <property name="text">
+             <string>经度:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLineEdit" name="txt_a_lon">
+              <property name="placeholderText">
+               <string>例: 121.4737</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_a_lat">
+              <property name="text">
+               <string>纬度:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_a_lat">
+              <property name="placeholderText">
+               <string>例: 31.2304</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QPushButton" name="btn_pick_a">
+              <property name="text">
+               <string>📍 从地图选取</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_paste_a">
+              <property name="text">
+               <string>📋 粘贴坐标</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_clear_a">
+              <property name="text">
+               <string>🔄 清除</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <!-- B 点分组 -->
+        <widget class="QGroupBox" name="grp_point_b">
+         <property name="title">
+          <string>B 点（终点）</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout_b">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_b_lon">
+            <property name="text">
+             <string>经度:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLineEdit" name="txt_b_lon">
+              <property name="placeholderText">
+               <string>例: 114.0579</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbl_b_lat">
+              <property name="text">
+               <string>纬度:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="txt_b_lat">
+              <property name="placeholderText">
+               <string>例: 22.5431</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QPushButton" name="btn_pick_b">
+              <property name="text">
+               <string>📍 从地图选取</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_paste_b">
+              <property name="text">
+               <string>📋 粘贴坐标</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btn_clear_b">
+              <property name="text">
+               <string>🔄 清除</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <!-- 快捷操作分组 -->
+        <widget class="QGroupBox" name="grp_ab_ops">
+         <property name="title">
+          <string>快捷操作</string>
+         </property>
+         <layout class="QHBoxLayout" name="layout_ab_ops">
+          <item>
+           <widget class="QPushButton" name="btn_swap_ab">
+            <property name="text">
+             <string>🔃 交换 A/B</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="lbl_ab_dist">
+            <property name="text">
+             <string>📐 A-B 直线距离: --- km</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+
+     <!-- 标签页 3: 追踪结果 -->
+     <widget class="QWidget" name="tab_result">
+      <attribute name="title">
+       <string>追踪结果</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="layout_tab_result">
+       <item>
+        <!-- 统计摘要区域 -->
+        <widget class="QGroupBox" name="grp_statistics">
+         <property name="title">
+          <string>统计摘要</string>
+         </property>
+         <layout class="QVBoxLayout" name="layout_statistics">
+          <item>
+           <widget class="QTextEdit" name="txt_statistics">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="minimumHeight">
+             <number>150</number>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <!-- 导出分组 -->
+        <widget class="QGroupBox" name="grp_export">
+         <property name="title">
+          <string>导出</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_export">
+          <item row="0" column="0">
+           <widget class="QPushButton" name="btn_export_shp">
+            <property name="text">
+             <string>💾 导出 Shapefile</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QPushButton" name="btn_export_geojson">
+            <property name="text">
+             <string>💾 GeoJSON</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="QPushButton" name="btn_export_gpkg">
+            <property name="text">
+             <string>💾 GeoPackage</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="btn_export_kml">
+            <property name="text">
+             <string>💾 KML</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QPushButton" name="btn_export_csv">
+            <property name="text">
+             <string>📊 导出 CSV</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="2">
+           <widget class="QPushButton" name="btn_copy_wkt">
+            <property name="text">
+             <string>📋 复制坐标</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer>
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+
+   <!-- 底部操作按钮区域 -->
+   <item>
+    <widget class="QGroupBox" name="grp_actions">
+     <property name="title">
+      <string>操作</string>
+     </property>
+     <layout class="QHBoxLayout" name="layout_actions">
+      <item>
+       <widget class="QPushButton" name="btn_build_graph">
+        <property name="text">
+         <string>🔨 构建网络图</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_trace">
+        <property name="text">
+         <string>🚀 开始追踪</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_clear_result">
+        <property name="text">
+         <string>🗑 清除结果</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_close">
+        <property name="text">
+         <string>❌ 关闭</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- 进度条区域 -->
+   <item>
+    <widget class="QGroupBox" name="grp_progress">
+     <property name="title">
+      <string>进度</string>
+     </property>
+     <layout class="QVBoxLayout" name="layout_progress">
+      <item>
+       <layout class="QHBoxLayout">
+        <item>
+         <widget class="QProgressBar" name="progress_bar">
+          <property name="value">
+           <number>0</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="lbl_progress_msg">
+          <property name="text">
+           <string>就绪</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- 日志区域 -->
+   <item>
+    <widget class="QGroupBox" name="grp_log">
+     <property name="title">
+      <string>日志</string>
+     </property>
+     <layout class="QVBoxLayout" name="layout_log">
+      <item>
+       <widget class="QTextEdit" name="txt_log">
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="maximumHeight">
+         <number>120</number>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>9</pointsize>
+         </font>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+
+ <customwidgets>
+  <customwidget>
+   <class>QgsMapLayerComboBox</class>
+   <extends>QComboBox</extends>
+   <header>qgis/qgsmapLayercombobox.h</header>
+  </customwidget>
+ </customwidgets>
+
+ <resources/>
+ <connections/>
+</ui>
