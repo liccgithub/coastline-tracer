@@ -343,6 +343,15 @@ class CoastlineTracerDialog(QDialog):
         """从地图选取点。"""
         tool = PointSelectionTool(self.canvas, point_type)
         tool.point_selected.connect(self._on_point_selected)
+
+        # 将当前选择的线要素图层传递给点选工具，用于顶点吸附
+        snap_layers = []
+        for cmb in [self.cmb_coast, self.cmb_build_coast, self.cmb_land_border]:
+            layer = cmb.currentLayer()
+            if layer is not None:
+                snap_layers.append(layer)
+        tool.set_snap_layers(snap_layers)
+
         self.canvas.setMapTool(tool)
         self._log(f'请在地图上点击选取 {point_type} 点（按 Esc 取消）...')
 
