@@ -1,0 +1,16 @@
+[general]
+name=CoastlineTracer
+qgisMinimumVersion=3.28
+description=基于优先级的海岸线自动追踪与连接工具。在三类线数据（海岸线、建设线、陆地边界）中按优先级自动搜索 A→B 最优路径。
+version=1.0.0
+author=liccgithub
+email=liccgithub@users.noreply.github.com
+about=CoastlineTracer 是一个 QGIS 插件，用于在多源线要素数据中基于优先级权重自动追踪并连接海岸线路径。支持双向 Dijkstra 和 A* 算法，内置空间裁剪、图缓存、分色渲染、统计分析和多格式导出功能。
+tracker=https://github.com/liccgithub/coastline-tracer/issues
+repository=https://github.com/liccgithub/coastline-tracer
+tags=coastline,tracing,path,priority,shapefile,line,geospatial
+homepage=https://github.com/liccgithub/coastline-tracer
+category=Vector
+icon=icon.png
+experimental=False
+deprecated=False
