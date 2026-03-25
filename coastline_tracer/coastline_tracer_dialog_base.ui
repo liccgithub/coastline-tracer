@@ -687,7 +687,7 @@
   <customwidget>
    <class>QgsMapLayerComboBox</class>
    <extends>QComboBox</extends>
-   <header>qgis/qgsmapLayercombobox.h</header>
+   <header>qgis.gui</header>
   </customwidget>
  </customwidgets>
 
